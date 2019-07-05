@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">LectureFragments</string>
     <string name="message_fragment_greeting_text">Hi I\'m a fragment</string>
+    <string name="lesson_sample">Sample title</string>
+    <string name="lesson_redo">Redo</string>
+    <string name="lesson_start">Start</string>
 </resources>
