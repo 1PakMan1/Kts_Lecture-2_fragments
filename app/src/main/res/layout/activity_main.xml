@@ -9,13 +9,14 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_height="300dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="100dp"
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingStart="@dimen/card_padding"
-        android:paddingEnd="@dimen/card_padding" />
+        android:paddingEnd="@dimen/card_padding"
+        android:paddingBottom="@dimen/card_padding" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

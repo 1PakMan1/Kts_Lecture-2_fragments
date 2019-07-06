@@ -1,10 +1,14 @@
 package com.packman.lecturefragments
 
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
-class LessonPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class LessonPagerAdapter(
+    fragmentManager: FragmentManager
+) : FragmentPagerAdapter(fragmentManager),
+    CardAdapter {
 
     private val lessons = listOf(
         LessonFragment.getInstance(true, "Android Studio"),
@@ -15,11 +19,13 @@ class LessonPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapte
         LessonFragment.getInstance(false, "Activity")
     )
 
+    override val itemCount: Int = lessons.size
+
+    override fun getCardAt(position: Int): CardView? = lessons[position].getCard()
+
     override fun getItem(position: Int): Fragment {
         return lessons[position]
     }
 
-    override fun getCount(): Int {
-        return lessons.size
-    }
+    override fun getCount(): Int = lessons.size
 }
