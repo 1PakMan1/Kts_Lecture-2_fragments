@@ -5,4 +5,6 @@
     <string name="lesson_redo">Redo</string>
     <string name="lesson_start">Start</string>
     <string name="company_name">KTS Studio. Lecture #2 - Fragments</string>
+    <string name="view_pager">ViewPager</string>
+    <string name="back_stack">BackStack</string>
 </resources>
