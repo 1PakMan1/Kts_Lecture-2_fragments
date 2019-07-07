@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorAccent"
     tools:context=".MainActivity">
+
+    <include layout="@layout/toolbar" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="100dp"
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingStart="@dimen/card_padding"
         android:paddingEnd="@dimen/card_padding"
-        android:paddingBottom="@dimen/card_padding" />
+        android:paddingBottom="60dp" />
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>
