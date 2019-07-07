@@ -19,26 +19,25 @@ class LessonFragment : Fragment() {
     private var cardView: CardView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_lesson, container, false)
-        cardView = view as CardView
-        return view
+        return inflater.inflate(R.layout.fragment_lesson, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        cardView = view as CardView
         initViews()
     }
 
     fun getCard(): CardView? = cardView
 
     private fun initViews() {
-        with(card) { maxCardElevation = CardAdapter.MAX_ELEVATION_FACTOR * elevation }
+        card.apply { maxCardElevation = CardAdapter.MAX_ELEVATION_FACTOR * elevation }
 
         lesson_topic.text = lessonTopic
 
         bookmark.visibility = if (isLessonDone) View.VISIBLE else View.GONE
 
-        val actionText = if (isLessonDone) getText(R.string.lesson_redo) else getText(R.string.lesson_start)
+        val actionText = if (isLessonDone) getString(R.string.lesson_redo) else getString(R.string.lesson_start)
         showDetails.text = actionText
     }
 

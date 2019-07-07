@@ -6,15 +6,29 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private val lessons = listOf(
+        LessonFragment.getInstance(true, "Android Studio"),
+        LessonFragment.getInstance(true, "Gradle"),
+        LessonFragment.getInstance(true, "Layers"),
+        LessonFragment.getInstance(false, "View (xml)"),
+        LessonFragment.getInstance(false, "Resources"),
+        LessonFragment.getInstance(false, "Activity")
+    )
+
+    private val cardAdapter = LessonPagerAdapter(
+        fragmentManager = supportFragmentManager,
+        lessons = lessons
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         with(pager) {
-            adapter = LessonPagerAdapter(supportFragmentManager)
+            adapter = cardAdapter
             setPageTransformer(
                 false,
-                ShadowTransformer(adapter as CardAdapter, this)
+                ShadowTransformer(cardAdapter as CardAdapter, this)
             )
         }
     }

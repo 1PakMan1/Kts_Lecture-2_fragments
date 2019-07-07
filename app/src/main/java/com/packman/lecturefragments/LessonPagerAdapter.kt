@@ -1,31 +1,36 @@
 package com.packman.lecturefragments
 
+import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 
 class LessonPagerAdapter(
-    fragmentManager: FragmentManager
-) : FragmentPagerAdapter(fragmentManager),
+    fragmentManager: FragmentManager,
+    lessons: List<LessonFragment>
+) : FragmentStatePagerAdapter(fragmentManager),
     CardAdapter {
 
-    private val lessons = listOf(
-        LessonFragment.getInstance(true, "Android Studio"),
-        LessonFragment.getInstance(true, "Gradle"),
-        LessonFragment.getInstance(true, "Layers"),
-        LessonFragment.getInstance(false, "View (xml)"),
-        LessonFragment.getInstance(false, "Resources"),
-        LessonFragment.getInstance(false, "Activity")
-    )
+    private var fragments: MutableList<LessonFragment> = mutableListOf()
+
+    init {
+        fragments.addAll(lessons)
+    }
 
     override val itemCount: Int = lessons.size
 
-    override fun getCardAt(position: Int): CardView? = lessons[position].getCard()
-
-    override fun getItem(position: Int): Fragment {
-        return lessons[position]
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        return super.instantiateItem(container, position).also {
+            fragments[position] = it as LessonFragment
+        }
     }
 
-    override fun getCount(): Int = lessons.size
+    override fun getCardAt(position: Int): CardView? = fragments[position].getCard()
+
+    override fun getItem(position: Int): Fragment {
+        return fragments[position]
+    }
+
+    override fun getCount(): Int = fragments.size
 }
