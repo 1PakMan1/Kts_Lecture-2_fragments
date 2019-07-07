@@ -18,6 +18,9 @@ class LessonFragment : Fragment() {
 
     private var cardView: CardView? = null
 
+    private val selectionListener
+        get() = parentFragment as? LessonSelectionListener
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_lesson, container, false)
     }
@@ -38,7 +41,14 @@ class LessonFragment : Fragment() {
         bookmark.visibility = if (isLessonDone) View.VISIBLE else View.GONE
 
         val actionText = if (isLessonDone) getString(R.string.lesson_redo) else getString(R.string.lesson_start)
-        showDetails.text = actionText
+        showDetails.apply {
+            text = actionText
+            setOnClickListener { selectionListener!!.onLessonSelected(lessonTopic!!) }
+        }
+    }
+
+    interface LessonSelectionListener {
+        fun onLessonSelected(lesson: String)
     }
 
     companion object {

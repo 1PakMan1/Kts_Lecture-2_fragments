@@ -6,7 +6,10 @@ import com.packman.lecturefragments.CardAdapter.Companion.BASE_ELEVATION
 import com.packman.lecturefragments.CardAdapter.Companion.MAX_ELEVATION_FACTOR
 import com.packman.lecturefragments.CardAdapter.Companion.SCALE_FACTOR
 
-class ShadowTransformer(private val cardAdapter: CardAdapter, viewPager: ViewPager) : ViewPager.OnPageChangeListener,
+class ShadowTransformer(
+    private val cardAdapter: CardAdapter,
+    viewPager: ViewPager
+) : ViewPager.OnPageChangeListener,
     ViewPager.PageTransformer {
 
     init {
