@@ -55,11 +55,11 @@ class LessonFragment : Fragment() {
         private const val KEY_IS_DONE = "KEY_IS_DONE"
         private const val KEY_LESSON_TOPIC = "KEY_LESSON_TOPIC"
 
-        fun getInstance(isDone: Boolean, lessonTopic: String): LessonFragment {
+        fun getInstance(model: LessonUiModel): LessonFragment {
             return LessonFragment().apply {
                 arguments = Bundle().apply {
-                    putBoolean(KEY_IS_DONE, isDone)
-                    putString(KEY_LESSON_TOPIC, lessonTopic)
+                    putBoolean(KEY_IS_DONE, model.isDone)
+                    putString(KEY_LESSON_TOPIC, model.topic)
                 }
             }
         }

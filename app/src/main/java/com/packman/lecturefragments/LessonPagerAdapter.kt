@@ -7,30 +7,32 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 
 class LessonPagerAdapter(
-    fragmentManager: FragmentManager,
-    lessons: List<LessonFragment>
+    private val getLesson: (Int) -> LessonFragment,
+    fragmentManager: FragmentManager
 ) : FragmentStatePagerAdapter(fragmentManager),
     CardAdapter {
 
-    private var fragments: MutableList<LessonFragment> = mutableListOf()
+    private var fragmentTags = mutableMapOf<Int, LessonFragment>()
 
-    init {
-        fragments.addAll(lessons)
-    }
-
-    override val itemCount: Int = lessons.size
+    override val itemCount: Int = NUM_OF_ITEMS
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         return super.instantiateItem(container, position).also {
-            fragments[position] = it as LessonFragment
+            fragmentTags[position] = (it as LessonFragment)
         }
     }
 
-    override fun getCardAt(position: Int): CardView? = fragments[position].getCard()
-
-    override fun getItem(position: Int): Fragment {
-        return fragments[position]
+    override fun getCardAt(position: Int): CardView? {
+        return fragmentTags[position]?.getCard()
     }
 
-    override fun getCount(): Int = fragments.size
+    override fun getItem(position: Int): Fragment {
+        return getLesson(position)
+    }
+
+    override fun getCount(): Int = NUM_OF_ITEMS
+
+    companion object {
+        private const val NUM_OF_ITEMS = 6
+    }
 }

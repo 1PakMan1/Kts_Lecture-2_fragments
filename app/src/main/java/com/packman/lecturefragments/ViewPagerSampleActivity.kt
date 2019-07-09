@@ -11,7 +11,7 @@ class ViewPagerSampleActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pager)
-        startNavigation()
+        if (savedInstanceState == null) startNavigation()
     }
 
     override fun onTopicSelected(topic: String) = openDetailedScreen(topic)
@@ -19,11 +19,15 @@ class ViewPagerSampleActivity : AppCompatActivity(),
     private fun startNavigation() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.content, ViewPagerFragment())
-            .commitNow()
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun openDetailedScreen(topic: String) {
-
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.content, InfoFragment())
+            .addToBackStack(null)
+            .commit()
     }
 
     companion object {

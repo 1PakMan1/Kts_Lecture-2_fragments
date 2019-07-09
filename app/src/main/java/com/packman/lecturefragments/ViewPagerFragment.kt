@@ -15,12 +15,12 @@ class ViewPagerFragment : Fragment(), LessonFragment.LessonSelectionListener {
     private var navigationListener: NavigationListener? = null
 
     private val lessons = listOf(
-        LessonFragment.getInstance(true, "Android Studio"),
-        LessonFragment.getInstance(true, "Gradle"),
-        LessonFragment.getInstance(true, "Layers"),
-        LessonFragment.getInstance(false, "View (xml)"),
-        LessonFragment.getInstance(false, "Resources"),
-        LessonFragment.getInstance(false, "Activity")
+        LessonUiModel(true, "Android Studio"),
+        LessonUiModel(true, "Gradle"),
+        LessonUiModel(true, "Layers"),
+        LessonUiModel(false, "View (xml)"),
+        LessonUiModel(false, "Resources"),
+        LessonUiModel(false, "Activity")
     )
 
     override fun onAttach(context: Context?) {
@@ -39,17 +39,19 @@ class ViewPagerFragment : Fragment(), LessonFragment.LessonSelectionListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initList()
+        initPager()
     }
 
     override fun onLessonSelected(lesson: String) {
         navigationListener!!.onTopicSelected(lesson)
     }
 
-    private fun initList() {
+    private fun initPager() {
         cardAdapter = LessonPagerAdapter(
             fragmentManager = childFragmentManager,
-            lessons = lessons
+            getLesson = { position: Int ->
+                LessonFragment.getInstance(lessons[position])
+            }
         )
 
         with(pager) {

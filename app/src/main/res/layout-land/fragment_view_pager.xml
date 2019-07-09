@@ -14,8 +14,8 @@
         android:layout_gravity="bottom"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:paddingStart="@dimen/card_padding"
-        android:paddingEnd="@dimen/card_padding"
+        android:paddingStart="350dp"
+        android:paddingEnd="150dp"
         android:paddingBottom="40dp" />
 
 </FrameLayout>
