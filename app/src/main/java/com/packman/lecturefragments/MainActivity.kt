@@ -10,12 +10,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        with(pager) {
-            adapter = LessonPagerAdapter(supportFragmentManager)
-            setPageTransformer(
-                false,
-                ShadowTransformer(adapter as CardAdapter, this)
-            )
+        showViewPager.setOnClickListener {
+            startActivity(ViewPagerSampleActivity.getIntent(this))
+        }
+
+        showBackStackSamples.setOnClickListener {
+            startActivity(BackStackSampleActivity.getIntent(this))
         }
     }
 }
